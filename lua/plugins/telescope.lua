@@ -29,8 +29,8 @@ return {
       borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
       sorting_strategy = "ascending",
       layout_strategy = "flex",
-      prompt_prefix = " ",
-      selection_caret = " ",
+      prompt_prefix = " " .. require("icons").ui.Search .. " ",
+      selection_caret = require("icons").ui.Selected .. " ",
       layout_config = {
         prompt_position = "top",
         vertical = { mirror = true },
