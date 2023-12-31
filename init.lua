@@ -1,5 +1,5 @@
-require "autocmds"
-require "options"
-require "bootstrap"
-require "keymaps"
-require "neovide"
+require("autocmds")
+require("settings")
+require("bootstrap")
+require("keymaps")
+require("neovide")
