@@ -6,10 +6,26 @@ return {
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+		dependencies = {
+      "RRethy/nvim-treesitter-endwise"
+		},
 		opts = {
+      ensure_installed = {
+        "lua",
+        "php",
+        "html",
+        "css",
+        "javascript",
+        "yaml",
+        "json",
+        "markdown",
+        "markdown_inline",
+        "sql",
+      },
 			auto_install = true,
 			highlight = { enable = true },
 			indent = { enable = true },
+      endwise = { enable = true },
 			current_indent = { enabled = true, show_start = false, show_end = false },
 			incremental_selection = {
 				enable = true,

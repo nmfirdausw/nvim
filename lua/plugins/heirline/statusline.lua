@@ -86,21 +86,22 @@ local GitDict = {
   {
     provider = function(self)
       local count = self.status_dict.added or 0
-      return count > 0 and (icons.git.Added .. " " .. count .. " ")
+      -- return count > 0 and (icons.git.Added .. " " .. count .. " ")
+      return count > 0 and ("+" .. count .. " ")
     end,
     hl = { fg = colors.git_add },
   },
   {
     provider = function(self)
       local count = self.status_dict.removed or 0
-      return count > 0 and (icons.git.Deleted .. " " .. count .. " ")
+      return count > 0 and ("-" .. count .. " ")
     end,
     hl = { fg = colors.git_del },
   },
   {
     provider = function(self)
       local count = self.status_dict.changed or 0
-      return count > 0 and (icons.git.Modified .. " " .. count .. " ")
+      return count > 0 and ("~" .. count .. " ")
     end,
     hl = { fg = colors.git_change },
   },
@@ -146,7 +147,7 @@ local FileFlags = {
     condition = function()
       return vim.bo.modified
     end,
-    provider = " " .. icons.ui.FileModified .. " ",
+    provider = " " .. icons.ui.FileModified,
     hl = { fg = colors.purple },
   },
   {
@@ -186,25 +187,29 @@ local Diagnostics = {
   },
   {
     provider = function(self)
-      return self.errors > 0 and (icons.diagnostics.Error .. " " .. self.errors .. " ")
+      -- return self.errors > 0 and (icons.diagnostics.Error .. " " .. self.errors .. " ")
+      return self.errors > 0 and (icons.diagnostics.Error .. ":" .. self.errors .. " ")
     end,
     hl = { fg = colors.diag_error },
   },
   {
     provider = function(self)
-      return self.warnings > 0 and (icons.diagnostics.Warning .. " " .. self.warnings .. " ")
+      -- return self.warnings > 0 and (icons.diagnostics.Warning .. " " .. self.warnings .. " ")
+      return self.warnings > 0 and (icons.diagnostics.Warning .. ":" .. self.warnings .. " ")
     end,
     hl = { fg = colors.diag_warn },
   },
   {
     provider = function(self)
-      return self.info > 0 and (icons.diagnostics.Information .. " " .. self.info .. " ")
+      -- return self.info > 0 and (icons.diagnostics.Information .. " " .. self.info .. " ")
+      return self.info > 0 and (icons.diagnostics.Information .. ":" .. self.info .. " ")
     end,
     hl = { fg = colors.diag_info },
   },
   {
     provider = function(self)
-      return self.hints > 0 and (icons.diagnostics.Hint .. " " .. self.hints .. " ")
+      -- return self.hints > 0 and (icons.diagnostics.Hint .. " " .. self.hints .. " ")
+      return self.hints > 0 and (icons.diagnostics.Hint .. ":" .. self.hints .. " ")
     end,
     hl = { fg = colors.diag_hint },
   },
@@ -259,9 +264,12 @@ local GitStatusLine = {
   condition = conditions.is_git_repo,
   GitBranch,
   Space,
+  Space,
   FileNameBlock,
   Space,
+  Space,
   GitDict,
+  Space,
   Diagnostics,
   Align,
   LSPActive,
@@ -276,9 +284,9 @@ local DefaultStatusline = {
     condition = not conditions.is_git_repo,
     ViMode,
     Space,
+    Space,
     FileNameBlock,
     Space,
-    GitDict,
     Diagnostics,
     Align,
     LSPActive,

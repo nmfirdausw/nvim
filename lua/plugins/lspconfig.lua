@@ -1,110 +1,132 @@
 return {
-	"neovim/nvim-lspconfig",
-	event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
-		{
-			"williamboman/mason-lspconfig.nvim",
-			opts = {
-				automatic_installation = true,
-			},
-			config = function(_, opts)
-				require("mason-lspconfig").setup(opts)
-			end,
-		},
-		{
-			"ray-x/lsp_signature.nvim",
-			opts = {
-				bind = true,
-				handler_opts = {
-					border = "single",
-				},
-			},
-			config = function(_, opts)
-				require("lsp_signature").setup(opts)
-				vim.api.nvim_command("highlight NormalFloat guibg=#131f25")
-			end,
-		},
-	},
-	config = function()
-		local lspconfig = require("lspconfig")
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		-- Server Setup
-		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-				},
-			},
-		})
+  "neovim/nvim-lspconfig",
+  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    {
+      "folke/neodev.nvim",
+      config = function()
+        require('neodev').setup()
+      end
+    },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = {
+          "lua_ls",
+          "intelephense",
+          "html",
+          "emmet_ls",
+          "cssls",
+          "tailwindcss",
+          "tsserver",
+        },
+        automatic_installation = true,
+      },
+      config = function(_, opts)
+        require("mason-lspconfig").setup(opts)
+      end,
+    },
+    {
+      "ray-x/lsp_signature.nvim",
+      opts = {
+        bind = true,
+        handler_opts = {
+          border = "single",
+        },
+      },
+      config = function(_, opts)
+        require("lsp_signature").setup(opts)
+      end,
+    },
+  },
+  config = function()
+    local lspconfig = require("lspconfig")
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local border = "single"
 
-		lspconfig.intelephense.setup({
-			capabilities = capabilities,
-		})
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+      vim.lsp.handlers.hover, {
+        border = border
+      }
+    )
 
-		lspconfig.tailwindcss.setup({
-			capabilities = capabilities,
-		})
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+      vim.lsp.handlers.signature_help, {
+        border = border
+      }
+    )
 
-		lspconfig["emmet_ls"].setup({
-			capabilities = capabilities,
-			filetypes = { "html", "css", "php", "blade" },
-		})
+    vim.diagnostic.config {
+      float = {
+        border = border
+      }
+    }
 
-		-- End Server Setup
+    require('lspconfig.ui.windows').default_options = {
+      border = border
+    }
 
-		vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+    local icons = require("icons")
 
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-			callback = function(ev)
-				vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-				local icons = require("icons")
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = true,
+      severity_sort = true,
+    })
 
-				vim.diagnostic.config({
-					virtual_text = true,
-					signs = true,
-					underline = true,
-					update_in_insert = false,
-					severity_sort = false,
-				})
+    local signs = {
+      Error = icons.diagnostics.Error,
+      Warn = icons.diagnostics.Warning,
+      Hint = icons.diagnostics.Hint,
+      Info = icons.diagnostics.Information,
+    }
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
 
-				local signs = {
-					Error = icons.diagnostics.Error,
-					Warn = icons.diagnostics.Warning,
-					Hint = icons.diagnostics.Hint,
-					Info = icons.diagnostics.Information,
-				}
-				for type, icon in pairs(signs) do
-					local hl = "DiagnosticSign" .. type
-					vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-				end
+    -- Server Setup
+    lspconfig.lua_ls.setup({
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          workspace = { checkThirdParty = false },
+          telemetry = { enable = false },
+          diagnostics = { disable = { 'missing-fields' } },
+        },
+      },
+    })
 
-				local opts = { buffer = ev.buf }
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-				vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-				vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-				vim.keymap.set("n", "<space>wl", function()
-					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, opts)
-				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-				vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-				vim.keymap.set("n", "<space>f", function()
-					vim.lsp.buf.format({ async = true })
-				end, opts)
-			end,
-		})
-	end,
+    lspconfig.intelephense.setup({
+      capabilities = capabilities,
+      filetypes = { "php", "blade" },
+    })
+
+    lspconfig.tailwindcss.setup({
+      capabilities = capabilities,
+      filetypes = { "php", "blade", "css" },
+    })
+
+    lspconfig.emmet_ls.setup({
+      capabilities = capabilities,
+      filetypes = { "html", "cssls", "php", "blade" },
+    })
+
+    lspconfig.cssls.setup({
+      capabilities = capabilities,
+    })
+
+    lspconfig.html.setup({
+      capabilities = capabilities,
+      filetypes = { "html", "php", "blade" },
+    })
+
+    lspconfig.tsserver.setup({
+      capabilites = capabilities,
+    })
+    -- End Server Setup
+  end,
 }

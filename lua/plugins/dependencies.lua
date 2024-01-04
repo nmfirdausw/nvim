@@ -1,4 +1,7 @@
 return {
+  {
+    "folke/lazy.nvim",
+  },
 	{
 		"nvim-lua/plenary.nvim",
 	},
@@ -8,4 +11,12 @@ return {
 	{
 		"nvim-tree/nvim-web-devicons",
 	},
+  {
+    "arsham/arshlib.nvim",
+  },
+  {
+    "junegunn/fzf",
+    dir = "~/.fzf",
+    build = "./install --all"
+  },
 }

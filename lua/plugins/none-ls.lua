@@ -12,6 +12,5 @@ return {
 				null_ls.builtins.diagnostics.phpcs,
 			},
 		})
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 	end,
 }

@@ -8,4 +8,8 @@ if vim.g.neovide then
 	vim.g.neovide_remember_window_size = true
 	vim.g.neovide_input_macos_alt_is_meta = true
 	vim.opt.cursorline = false
+	vim.g.neovide_padding_top = 0
+	vim.g.neovide_padding_bottom = 0
+	vim.g.neovide_padding_right = 15
+	vim.g.neovide_padding_left = 15
 end

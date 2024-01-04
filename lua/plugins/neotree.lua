@@ -5,8 +5,8 @@ return {
 	cmd = "Neotree",
 	branch = "v3.x",
 	keys = {
-		{ "<leader>e", "<cmd>Neotree reveal<cr>", desc = "Focus File Explorer" },
-		{ "<leader>te", "<cmd>Neotree toggle<cr>", desc = "Toggle File Explorer" },
+		{ "<leader>e", "<cmd>Neotree reveal<cr>", desc = "Open or focus File Explorer" },
+		{ "<leader>E", "<cmd>Neotree toggle<cr>", desc = "Toggle File Explorer" },
 	},
 	opts = {
 		popup_border_style = "single",
