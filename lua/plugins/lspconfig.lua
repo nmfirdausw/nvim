@@ -102,7 +102,6 @@ return {
 
     lspconfig.intelephense.setup({
       capabilities = capabilities,
-      filetypes = { "php", "blade" },
     })
 
     lspconfig.tailwindcss.setup({
@@ -116,6 +115,13 @@ return {
     })
 
     lspconfig.cssls.setup({
+      settings = {
+        css = { validate = true,
+          lint = {
+            unknownAtRules = "ignore"
+          }
+        },
+      },
       capabilities = capabilities,
     })
 

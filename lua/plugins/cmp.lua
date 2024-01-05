@@ -43,7 +43,7 @@ return {
 				{ name = "buffer" },
 				{ name = "path" },
 			}),
-      -- stylua: ignore
+    -- stylua: ignore
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'

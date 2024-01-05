@@ -9,7 +9,7 @@ return {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.pint,
 				null_ls.builtins.diagnostics.phpstan,
-				null_ls.builtins.diagnostics.phpcs,
+				null_ls.builtins.diagnostics.tlint,
 			},
 		})
 	end,

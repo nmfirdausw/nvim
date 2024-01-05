@@ -21,6 +21,12 @@ return {
 			indent = {
 				padding = 0,
 			},
+			icon = {
+        folder_closed = icons.ui.FolderClosed,
+        folder_open = icons.ui.FolderOpen,
+        folder_empty = icons.ui.FolderEmpty,
+        highlight = "NeoTreeFileIcon"
+      },
 			modified = {
 				symbol = icons.ui.FileModified,
 			},
