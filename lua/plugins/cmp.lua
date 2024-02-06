@@ -19,12 +19,12 @@ return {
 		}
 
 		require("luasnip.loaders.from_vscode").lazy_load()
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
+		cmp.setup({
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
 			preselect = cmp.PreselectMode.None,
 			window = {
 				completion = cmp.config.window.bordered(border_opts),
@@ -35,20 +35,20 @@ return {
 					hl_group = "CmpGhostText",
 				},
 			},
-      mapping = cmp.mapping.preset.insert({
-				  ["<C-p>"] = cmp.mapping.select_prev_item(),
-				  ["<C-n>"] = cmp.mapping.select_next_item(),
-				  ["<C-k>"] = cmp.mapping.scroll_docs(-4),
-				  ["<C-j>"] = cmp.mapping.scroll_docs(4),
-				  ["<C-l>"] = cmp.mapping.complete(),
-				  ["<C-e>"] = cmp.mapping.abort(),
-				  ["<CR>"] = cmp.mapping.confirm({ select = false }),
-      }),
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-      }, {
-        { name = "buffer" },
-      }),
+			mapping = cmp.mapping.preset.insert({
+				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<C-k>"] = cmp.mapping.scroll_docs(-4),
+				["<C-j>"] = cmp.mapping.scroll_docs(4),
+				["<C-l>"] = cmp.mapping.complete(),
+				["<C-e>"] = cmp.mapping.abort(),
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
+			}),
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+			}, {
+				{ name = "buffer" },
+			}),
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text", -- options: "text", "text_symbol", "symbol_text", "symbol"
@@ -63,11 +63,11 @@ return {
 					before = function(entry, vim_item) -- for tailwind css autocomplete
 						if vim_item.kind == "Color" and entry.completion_item.documentation then
 							local _, _, r, g, b =
-								string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
+									string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
 							if r then
 								local color = string.format("%02x", r)
-									.. string.format("%02x", g)
-									.. string.format("%02x", b)
+										.. string.format("%02x", g)
+										.. string.format("%02x", b)
 								print(color)
 								local group = "Tw_" .. color
 								if vim.fn.hlID(group) < 1 then
@@ -79,35 +79,35 @@ return {
 							end
 						end
 						vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind)
-							or vim_item.kind
+								or vim_item.kind
 						return vim_item
 					end,
 				}),
 			},
-    })
+		})
 
-    cmp.setup.filetype("gitcommit", {
-      sources = cmp.config.sources({
-        { name = "git" },
-      }, {
-        { name = "buffer" },
-      })
-    })
+		cmp.setup.filetype("gitcommit", {
+			sources = cmp.config.sources({
+				{ name = "git" },
+			}, {
+				{ name = "buffer" },
+			}),
+		})
 
-    cmp.setup.cmdline({ "/", "?" }, {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = "buffer" }
-      }
-    })
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
 
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" }
-      }, {
-        { name = "cmdline" }
-      })
-    })
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+		})
 	end,
 }

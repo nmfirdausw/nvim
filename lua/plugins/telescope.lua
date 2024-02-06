@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		-- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "nvim-telescope/telescope-ui-select.nvim"
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	opts = {
 		defaults = {
@@ -23,24 +23,24 @@ return {
 	},
 	config = function(_, opts)
 		local telescope = require("telescope")
-    opts.extensions = {
-      ["ui-select"] = {
-        require("telescope.themes").get_dropdown {
-			    layout_config = {
-            width = function(_, max_columns, _)
-              return math.min(max_columns, 120)
-            end,
-			    },
-          borderchars = {
-            prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-            results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-            preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          },
-        }
-      }
-    }
+		opts.extensions = {
+			["ui-select"] = {
+				require("telescope.themes").get_dropdown({
+					layout_config = {
+						width = function(_, max_columns, _)
+							return math.min(max_columns, 120)
+						end,
+					},
+					borderchars = {
+						prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+						preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+					},
+				}),
+			},
+		}
 		telescope.setup(opts)
 		-- telescope.load_extension("fzf")
-    telescope.load_extension("ui-select")
+		telescope.load_extension("ui-select")
 	end,
 }

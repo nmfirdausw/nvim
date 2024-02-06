@@ -20,11 +20,11 @@ return {
 				padding = 0,
 			},
 			icon = {
-        folder_closed = "",
-        folder_open = "",
-        folder_empty = "",
-        highlight = "NeoTreeFileIcon"
-      },
+				folder_closed = "",
+				folder_open = "",
+				folder_empty = "",
+				highlight = "NeoTreeFileIcon",
+			},
 			modified = {
 				symbol = "",
 			},

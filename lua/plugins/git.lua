@@ -26,10 +26,24 @@ return {
 				vim.keymap.set("n", "<leader>gu", gs.undo_stage_hunk, { buffer = buffer, desc = "Undo stage Hunk" })
 				vim.keymap.set("n", "<leader>gR", gs.reset_buffer, { buffer = buffer, desc = "Reset buffer" })
 				vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { buffer = buffer, desc = "Preview hunk" })
-				vim.keymap.set("n", "<leader>gb", function() gs.blame_line({ full = true }) end, { buffer = buffer, desc = "View blame line" })
-				vim.keymap.set("n", "<leader>gB", function() gs.toggle_current_line_blame({ full = true }) end, { buffer = buffer, desc = "Toggle blame line" })
-				vim.keymap.set("o", "ih", ":<C-U>Gitsigns select_hunk<CR>", { buffer = buffer, desc = "GitSigns select Hunk" })
-				vim.keymap.set("x", "ih", ":<C-U>Gitsigns select_hunk<CR>", { buffer = buffer, desc = "GitSigns select Hunk" })
+				vim.keymap.set("n", "<leader>gb", function()
+					gs.blame_line({ full = true })
+				end, { buffer = buffer, desc = "View blame line" })
+				vim.keymap.set("n", "<leader>gB", function()
+					gs.toggle_current_line_blame({ full = true })
+				end, { buffer = buffer, desc = "Toggle blame line" })
+				vim.keymap.set(
+					"o",
+					"ih",
+					":<C-U>Gitsigns select_hunk<CR>",
+					{ buffer = buffer, desc = "GitSigns select Hunk" }
+				)
+				vim.keymap.set(
+					"x",
+					"ih",
+					":<C-U>Gitsigns select_hunk<CR>",
+					{ buffer = buffer, desc = "GitSigns select Hunk" }
+				)
 				vim.keymap.set("n", "<space>gd", ":<C-U>DiffviewToggle<CR>", { desc = "Toggle diff view" })
 			end,
 		},
@@ -39,12 +53,11 @@ return {
 		branch = "feat-diffview-toggle",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		config = function()
-			require("diffview").setup({
-			})
-		end
+			require("diffview").setup({})
+		end,
 	},
 	{
 		"tpope/vim-fugitive",
 		lazy = false,
-	}
+	},
 }

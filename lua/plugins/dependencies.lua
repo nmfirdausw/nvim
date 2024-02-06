@@ -1,7 +1,7 @@
 return {
-  {
-    "folke/lazy.nvim",
-  },
+	{
+		"folke/lazy.nvim",
+	},
 	{
 		"nvim-lua/plenary.nvim",
 	},
@@ -11,7 +11,7 @@ return {
 	{
 		"nvim-tree/nvim-web-devicons",
 	},
-  {
-    "arsham/arshlib.nvim",
-  },
+	{
+		"arsham/arshlib.nvim",
+	},
 }

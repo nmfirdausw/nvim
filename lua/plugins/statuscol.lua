@@ -7,19 +7,19 @@ return {
       if vim.opt.signcolumn:get() ~= "no" then
         table.insert(segments, {
           text = { "%s" },
-          click = "v:lua.ScSa"
+          click = "v:lua.ScSa",
         })
       end
       if vim.opt.number:get() then
         table.insert(segments, {
           text = { builtin.lnumfunc, " " },
-          click = "v:lua.ScLa"
+          click = "v:lua.ScLa",
         })
       end
       if vim.opt.foldenable:get() then
         table.insert(segments, {
           text = { builtin.foldfunc, " " },
-          click = "v:lua.ScFa"
+          click = "v:lua.ScFa",
         })
       end
       return segments
@@ -27,7 +27,7 @@ return {
 
     require("statuscol").setup({
       relculright = vim.opt.relativenumber:get(),
-      segments = buildSegments()
+      segments = buildSegments(),
     })
 
     --Toggle keymaps
@@ -41,7 +41,7 @@ return {
       end
       require("statuscol").setup({
         relculright = vim.opt.relativenumber:get(),
-        segments = buildSegments()
+        segments = buildSegments(),
       })
     end, { desc = "Toggle number column" })
     vim.keymap.set("n", "<space>ts", function()
@@ -52,7 +52,7 @@ return {
       end
       require("statuscol").setup({
         relculright = vim.opt.relativenumber:get(),
-        segments = buildSegments()
+        segments = buildSegments(),
       })
     end, { desc = "Toggle sign column" })
 
@@ -66,7 +66,7 @@ return {
       end
       require("statuscol").setup({
         relculright = vim.opt.relativenumber:get(),
-        segments = buildSegments()
+        segments = buildSegments(),
       })
     end, { desc = "Toggle fold column" })
   end,

@@ -2,9 +2,9 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
-    config = function ()
+    config = function()
       require("colorizer").setup({})
-    end
+    end,
   },
   {
     "altermo/ultimate-autopair.nvim",
@@ -12,7 +12,7 @@ return {
     branch = "v0.6",
     opts = {
       bs = {
-        enable = false
+        enable = false,
       },
     },
   },
@@ -55,6 +55,6 @@ return {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({})
-    end
-  }
+    end,
+  },
 }

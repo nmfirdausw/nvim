@@ -7,10 +7,10 @@ return {
     auto_preview = true,
     fold_open = "",
     fold_closed = "",
-    use_diagnostic_signs = true
+    use_diagnostic_signs = true,
   },
   keys = {
-    { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location list" },
+    { "<leader>xL", "<cmd>TroubleToggle loclist<cr>",  desc = "Location list" },
     { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix list" },
     {
       "[q",

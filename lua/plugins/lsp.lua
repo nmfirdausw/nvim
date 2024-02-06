@@ -22,8 +22,8 @@ return {
       {
         "folke/neodev.nvim",
         config = function()
-          require('neodev').setup()
-        end
+          require("neodev").setup()
+        end,
       },
       {
         "williamboman/mason-lspconfig.nvim",
@@ -61,31 +61,27 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local border = "single"
 
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover, {
-          border = border
-        }
-      )
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = border,
+      })
 
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help, {
-          border = border
-        }
-      )
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = border,
+      })
 
-      vim.diagnostic.config {
+      vim.diagnostic.config({
         float = {
-          border = border
-        }
-      }
+          border = border,
+        },
+      })
 
-      require('lspconfig.ui.windows').default_options = {
-        border = border
+      require("lspconfig.ui.windows").default_options = {
+        border = border,
       }
 
       vim.diagnostic.config({
         virtual_text = {
-          prefix = "●"
+          prefix = "●",
         },
         signs = true,
         underline = true,
@@ -111,7 +107,7 @@ return {
           Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
-            diagnostics = { disable = { 'missing-fields' } },
+            diagnostics = { disable = { "missing-fields" } },
           },
         },
       })
@@ -132,10 +128,11 @@ return {
 
       lspconfig.cssls.setup({
         settings = {
-          css = { validate = true,
+          css = {
+            validate = true,
             lint = {
-              unknownAtRules = "ignore"
-            }
+              unknownAtRules = "ignore",
+            },
           },
         },
         capabilities = capabilities,
@@ -151,5 +148,5 @@ return {
       })
       -- End Server Setup
     end,
-  }
+  },
 }

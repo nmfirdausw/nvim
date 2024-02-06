@@ -5,7 +5,7 @@ return {
     priority = 1000,
     config = function()
       -- vim.cmd("colorscheme forest-night")
-    end
+    end,
   },
   {
     "Shatur/neovim-ayu",
@@ -13,11 +13,11 @@ return {
     priority = 1000,
     config = function()
       require("ayu").setup({
-          mirage = true,
-          overrides = {},
+        mirage = true,
+        overrides = {},
       })
       -- vim.cmd("colorscheme ayu")
-    end
+    end,
   },
   {
     "shaunsingh/nord.nvim",
@@ -25,8 +25,8 @@ return {
     priority = 1000,
     config = function()
       vim.cmd("colorscheme nord")
-			vim.api.nvim_set_hl(0, "WinBar", { link = "Normal" })
-			vim.api.nvim_set_hl(0, "WinBarNC", { link = "Normal" })
-    end
-  }
+      vim.api.nvim_set_hl(0, "WinBar", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "WinBarNC", { link = "Normal" })
+    end,
+  },
 }
