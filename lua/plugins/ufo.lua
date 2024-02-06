@@ -1,3 +1,4 @@
+
 local handler = function(virtText, lnum, endLnum, width, truncate)
 	local newVirtText = {}
 	local suffix = (" 󰁂 %d "):format(endLnum - lnum)
@@ -29,20 +30,6 @@ return {
 		"kevinhwang91/nvim-ufo",
 		dependencies = {
 			"kevinhwang91/promise-async",
-			{
-				"luukvbaal/statuscol.nvim",
-				config = function()
-					local builtin = require("statuscol.builtin")
-					require("statuscol").setup({
-						relculright = true,
-						segments = {
-							{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-							{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-							{ text = { " %s" }, click = "v:lua.ScSa" },
-						},
-					})
-				end,
-			},
 		},
 		event = "BufReadPost",
 		opts = {

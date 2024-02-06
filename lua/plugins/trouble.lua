@@ -5,8 +5,8 @@ return {
     padding = false,
     auto_close = true,
     auto_preview = true,
-    fold_open = require("icons").ui.FoldOpened,
-    fold_closed = require("icons").ui.FoldClosed,
+    fold_open = "",
+    fold_closed = "",
     use_diagnostic_signs = true
   },
   keys = {

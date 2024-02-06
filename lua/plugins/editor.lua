@@ -1,5 +1,12 @@
 return {
   {
+    "NvChad/nvim-colorizer.lua",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function ()
+      require("colorizer").setup({})
+    end
+  },
+  {
     "altermo/ultimate-autopair.nvim",
     event = { "InsertEnter", "CmdlineEnter" },
     branch = "v0.6",
@@ -9,7 +16,6 @@ return {
       },
     },
   },
-  -- Parenthesis higlight auter pair
   {
     "utilyre/sentiment.nvim",
     version = "*",
@@ -44,29 +50,11 @@ return {
     end,
   },
   {
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    config = true,
-    keys = {
-      {
-        "]t",
-        function()
-          require("todo-comments").jump_next()
-        end,
-        desc = "Next todo comment",
-      },
-      {
-        "[t",
-        function()
-          require("todo-comments").jump_prev()
-        end,
-        desc = "Previous todo comment",
-      },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>",                           desc = "Todo list (Trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",   desc = "Todo/Fix/Fixme list (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>",                         desc = "Search for Todo" },
-      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Search for Todo/Fix/Fixme" },
-    },
-  },
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end
+  }
 }

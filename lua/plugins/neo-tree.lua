@@ -1,5 +1,3 @@
-local icons = require("icons")
-
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	cmd = "Neotree",
@@ -22,25 +20,25 @@ return {
 				padding = 0,
 			},
 			icon = {
-        folder_closed = icons.ui.FolderClosed,
-        folder_open = icons.ui.FolderOpen,
-        folder_empty = icons.ui.FolderEmpty,
+        folder_closed = "",
+        folder_open = "",
+        folder_empty = "",
         highlight = "NeoTreeFileIcon"
       },
 			modified = {
-				symbol = icons.ui.FileModified,
+				symbol = "",
 			},
 			git_status = {
 				symbols = {
 					added = "",
 					modified = "",
-					deleted = icons.git.Deleted,
-					renamed = icons.git.Renamed,
-					untracked = icons.git.Untracked,
-					ignored = icons.git.Ignored,
+					deleted = "",
+					renamed = "",
+					untracked = "",
+					ignored = "",
 					unstaged = "",
-					staged = icons.git.Staged,
-					conflict = icons.git.Conflicted,
+					staged = "󰱒",
+					conflict = "󱋯",
 				},
 			},
 		},

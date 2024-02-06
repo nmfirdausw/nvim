@@ -1,14 +1,10 @@
 return {
-	-- Syntax highlighting.
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-		dependencies = {
-      "RRethy/nvim-treesitter-endwise"
-		},
 		opts = {
       ensure_installed = {
         "lua",
@@ -18,11 +14,12 @@ return {
         "javascript",
         "yaml",
         "json",
+				"vimdoc",
         "markdown",
         "markdown_inline",
         "sql",
+        "query",
       },
-			auto_install = true,
 			highlight = { enable = true },
 			indent = { enable = true },
       endwise = { enable = true },
@@ -115,7 +112,7 @@ return {
 		opts = {},
 	},
 
-	-- Color for bracket pair
+	-- -- Color for bracket pair
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },

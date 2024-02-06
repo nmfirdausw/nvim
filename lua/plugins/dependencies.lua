@@ -14,9 +14,4 @@ return {
   {
     "arsham/arshlib.nvim",
   },
-  {
-    "junegunn/fzf",
-    dir = "~/.fzf",
-    build = "./install --all"
-  },
 }

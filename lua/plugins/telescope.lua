@@ -2,7 +2,7 @@ return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		-- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-ui-select.nvim"
 	},
 	opts = {
@@ -10,8 +10,8 @@ return {
 			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 			sorting_strategy = "ascending",
 			layout_strategy = "flex",
-			prompt_prefix = " " .. require("icons").ui.Search .. " ",
-			selection_caret = require("icons").ui.Selected .. " ",
+			prompt_prefix = "  ",
+			selection_caret = " ",
 			layout_config = {
 				prompt_position = "top",
 				preview_cutoff = 10,
@@ -40,7 +40,7 @@ return {
       }
     }
 		telescope.setup(opts)
-		telescope.load_extension("fzf")
+		-- telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
 	end,
 }

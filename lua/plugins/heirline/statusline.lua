@@ -1,8 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local icons = require("icons")
 local colors = {
-  bright_bg = utils.get_highlight("Folded").bg,
+  bright_bg = utils.get_highlight("Normal").bg,
   bright_fg = utils.get_highlight("Folded").fg,
   red = utils.get_highlight("DiagnosticError").fg,
   dark_red = utils.get_highlight("DiffDelete").bg,
@@ -86,7 +85,6 @@ local GitDict = {
   {
     provider = function(self)
       local count = self.status_dict.added or 0
-      -- return count > 0 and (icons.git.Added .. " " .. count .. " ")
       return count > 0 and ("+" .. count .. " ")
     end,
     hl = { fg = colors.git_add },
@@ -147,14 +145,14 @@ local FileFlags = {
     condition = function()
       return vim.bo.modified
     end,
-    provider = " " .. icons.ui.FileModified,
+    provider = " " .. "",
     hl = { fg = colors.purple },
   },
   {
     condition = function()
       return not vim.bo.modifiable or vim.bo.readonly
     end,
-    provider = " " .. icons.ui.FileReadOnly .. " ",
+    provider = " ",
     hl = { fg = colors.orange },
   },
 }
@@ -187,29 +185,25 @@ local Diagnostics = {
   },
   {
     provider = function(self)
-      -- return self.errors > 0 and (icons.diagnostics.Error .. " " .. self.errors .. " ")
-      return self.errors > 0 and (icons.diagnostics.Error .. ":" .. self.errors .. " ")
+      return self.errors > 0 and ("●·" .. self.errors .. " ")
     end,
     hl = { fg = colors.diag_error },
   },
   {
     provider = function(self)
-      -- return self.warnings > 0 and (icons.diagnostics.Warning .. " " .. self.warnings .. " ")
-      return self.warnings > 0 and (icons.diagnostics.Warning .. ":" .. self.warnings .. " ")
+      return self.warnings > 0 and ("●·" .. self.warnings .. " ")
     end,
     hl = { fg = colors.diag_warn },
   },
   {
     provider = function(self)
-      -- return self.info > 0 and (icons.diagnostics.Information .. " " .. self.info .. " ")
-      return self.info > 0 and (icons.diagnostics.Information .. ":" .. self.info .. " ")
+      return self.info > 0 and ("●·" .. self.info .. " ")
     end,
     hl = { fg = colors.diag_info },
   },
   {
     provider = function(self)
-      -- return self.hints > 0 and (icons.diagnostics.Hint .. " " .. self.hints .. " ")
-      return self.hints > 0 and (icons.diagnostics.Hint .. ":" .. self.hints .. " ")
+      return self.hints > 0 and ("●·" .. self.hints .. " ")
     end,
     hl = { fg = colors.diag_hint },
   },
@@ -221,7 +215,7 @@ local LSPActive = {
 
   provider = function()
     local names = {}
-    for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
       table.insert(names, server.name)
     end
     return table.concat(names, " ") .. " "
