@@ -1,6 +1,15 @@
 return {
   "Bekaboo/dropbar.nvim",
-  -- optional, but required for fuzzy finder support
+  opts = {
+    icons = {
+      ui = {
+        bar = {
+          separator = "  ",
+          extends = "…",
+        }
+      }
+    }
+  },
   dependencies = {
     "nvim-telescope/telescope-fzf-native.nvim",
   },

@@ -19,18 +19,56 @@ local colors = {
   git_add = utils.get_highlight("diffAdded").fg,
   git_change = utils.get_highlight("diffChanged").fg,
 }
+
+local mode_names = {
+  n = "🅽 ",
+  no = "🅽 ",
+  nov = "🅽 ",
+  noV = "🅽 ",
+  ["no\22"] = "🅽 ",
+  niI = "🅽 ",
+  niR = "🅽 ",
+  niV = "🅽 ",
+  nt = "🅽 ",
+  v = "🆅",
+  vs = "🆅 ",
+  V = "🆅 ",
+  Vs = "🆅 ",
+  ["\22"] = "🆅 ",
+  ["\22s"] = "🆅 ",
+  s = "🆂 ",
+  S = "🆂_",
+  ["\19"] = "🆂 ",
+  i = "🅸 ",
+  ic = "🅸 ",
+  ix = "🅸 ",
+  R = "🆁 ",
+  Rc = "🆁 ",
+  Rx = "🆁 ",
+  Rv = "🆁 ",
+  Rvc = "🆁 ",
+  Rvx = "🆁 ",
+  c = "🅲 ",
+  cv = "🅴 ",
+  r = "...",
+  rm = "🅼 ",
+  ["r?"] = "?",
+  ["!"] = "!",
+  t = "🆃 ",
+}
+
 local mode_colors = {
-  n = colors.green,
-  i = colors.orange,
-  v = colors.purple,
-  V = colors.purple,
-  ["\22"] = colors.purple,
-  c = colors.red,
-  s = colors.purple,
-  S = colors.purple,
-  ["\19"] = colors.purple,
-  R = colors.orange,
-  r = colors.orange,
+  n = colors.purple,
+  i = colors.green,
+  v = colors.red,
+  V = colors.red,
+  ["\22"] = colors.red,
+  c = colors.orange,
+  s = colors.cyan,
+  S = colors.cyan,
+  ["\19"] = colors.cyan,
+  R = colors.gray,
+  r = colors.gray,
   ["!"] = colors.red,
   t = colors.red,
 }
@@ -38,12 +76,27 @@ local mode_colors = {
 local Space = { provider = " " }
 local Align = { provider = "%=" }
 
-local ViMode = {
+local ViModeLeft = {
   init = function(self)
     self.mode = vim.fn.mode(1)
   end,
 
   provider = "█",
+
+  hl = function(self)
+    local mode = self.mode:sub(1, 1)
+    return { fg = mode_colors[mode] }
+  end,
+}
+
+local ViModeRight = {
+  init = function(self)
+    self.mode = vim.fn.mode(1)
+  end,
+
+  provider = function(self)
+    return "%2(" .. mode_names[self.mode] .. "%)"
+  end,
 
   hl = function(self)
     local mode = self.mode:sub(1, 1)
@@ -270,13 +323,13 @@ local GitStatusLine = {
   Align,
   Ruler,
   Space,
-  ScrollBar,
+  ViModeRight,
 }
 
 local DefaultStatusline = {
   {
     condition = not conditions.is_git_repo,
-    ViMode,
+    ViModeLeft,
     Space,
     Space,
     FileNameBlock,

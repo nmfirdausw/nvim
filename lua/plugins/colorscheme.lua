@@ -27,6 +27,9 @@ return {
       vim.cmd("colorscheme nord")
       vim.api.nvim_set_hl(0, "WinBar", { link = "Normal" })
       vim.api.nvim_set_hl(0, "WinBarNC", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#2e3340" })
     end,
   },
 }
