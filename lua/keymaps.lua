@@ -133,3 +133,13 @@ vim.keymap.set("n", "K", function()
     vim.diagnostic.open_float()
   end
 end, { desc = "Hover" })
+
+-- Folds
+vim.keymap.set("n", "zO", require("ufo").openAllFolds, { desc = "Open all folds" })
+vim.keymap.set("n", "zC", require("ufo").closeAllFolds, { desc = "Close all folds" })
+vim.keymap.set("n", "zc", "<cmd>foldopen<CR>", { desc = "Open fold" })
+vim.keymap.set("n", "zo", "<cmd>foldclose<CR>", { desc = "Close fold" })
+vim.keymap.set("n", "<leader>+", require("ufo").openAllFolds, { desc = "Open all folds" })
+vim.keymap.set("n", "<leader>_", require("ufo").closeAllFolds, { desc = "Close all folds" })
+vim.keymap.set("n", "<leader>=", "<cmd>foldopen<CR>", { desc = "Open fold" })
+vim.keymap.set("n", "<leader>-", "<cmd>foldclose<CR>", { desc = "Close fold" })
