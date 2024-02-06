@@ -2,7 +2,7 @@ return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		-- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	opts = {
@@ -40,7 +40,7 @@ return {
 			},
 		}
 		telescope.setup(opts)
-		-- telescope.load_extension("fzf")
+		telescope.load_extension("fzf")
 		telescope.load_extension("ui-select")
 	end,
 }
