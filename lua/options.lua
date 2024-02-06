@@ -18,7 +18,7 @@ vim.opt.tabstop = 2
 vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 vim.opt.foldcolumn = "1"
 vim.opt.foldenable = true
@@ -33,3 +33,14 @@ vim.filetype.add({
     },
   }),
 })
+
+local signs = {
+  Error = "●",
+  Warn = "●",
+  Hint = "●",
+  Info = "●",
+}
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end

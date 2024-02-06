@@ -30,6 +30,9 @@ return {
       vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
       vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })
       vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#2e3340" })
+      vim.api.nvim_set_hl(0, "NeoTreeTabInactive", { bg = "#2e3340", fg = "#777777" })
+      vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorActive", { bg = "#2e3340", fg = "#2e3340" })
+      vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { bg = "#2e3340", fg = "#2e3340" })
     end,
   },
 }

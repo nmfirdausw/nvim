@@ -1,7 +1,6 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	cmd = "Neotree",
-	branch = "v3.x",
 	keys = {
 		{ "<leader>e", "<cmd>Neotree reveal<cr>", desc = "Open or focus File Explorer" },
 		{ "<leader>E", "<cmd>Neotree toggle<cr>", desc = "Toggle File Explorer" },
@@ -10,8 +9,19 @@ return {
 		popup_border_style = "single",
 		close_if_last_window = true,
 		enable_git_status = true,
-		enable_diagnostics = false,
+		enable_diagnostics = true,
 		enable_normal_mode_for_inputs = false,
+		sources = { "filesystem", "buffers", "git_status" },
+		source_selector = {
+			winbar = true,
+			content_layout = "center",
+			sources = {
+				{ source = "filesystem", display_name = "Files" },
+				{ source = "buffers", display_name = "Buferss" },
+				{ source = "git_status", display_name = "Git" },
+				{ source = "diagnostics", display_name = "Diagnostic" },
+			},
+		},
 		default_component_configs = {
 			container = {
 				enable_character_fade = false,
@@ -42,8 +52,30 @@ return {
 				},
 			},
 		},
+		commands = {
+			parent_or_close = function(state)
+				local node = state.tree:get_node()
+				if (node.type == "directory" or node:has_children()) and node:is_expanded() then
+					state.commands.toggle_node(state)
+				else
+					require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+				end
+			end,
+			child_or_open = function(state)
+				local node = state.tree:get_node()
+				if node.type == "directory" or node:has_children() then
+					if not node:is_expanded() then -- if unexpanded, expand
+						state.commands.toggle_node(state)
+					else -- if expanded and has children, seleect the next child
+						require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+					end
+				else -- if not a directory just open it
+					state.commands.open(state)
+				end
+			end,
+		},
 		window = {
-			width = 30,
+			width = 40,
 			mappings = {
 				["A"]  = "git_add_all",
 				["gu"] = "git_unstage_file",
@@ -51,7 +83,11 @@ return {
 				["gr"] = "git_revert_file",
 				["gc"] = "git_commit",
 				["gp"] = "git_push",
-				["gg"] = "git_commit_and_push"
+				["gg"] = "git_commit_and_push",
+				["H"] = "prev_source",
+        ["L"] = "next_source",
+				h = "parent_or_close",
+				l = "child_or_open",
 			}
 		},
 		event_handlers = {
