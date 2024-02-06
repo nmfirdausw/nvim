@@ -10,8 +10,8 @@ return {
 		popup_border_style = "single",
 		close_if_last_window = true,
 		enable_git_status = true,
-		enable_diagnostics = true,
-		enable_normal_mode_for_inputs = true,
+		enable_diagnostics = false,
+		enable_normal_mode_for_inputs = false,
 		default_component_configs = {
 			container = {
 				enable_character_fade = false,
