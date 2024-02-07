@@ -84,7 +84,6 @@ return {
 				["gc"] = "git_commit",
 				["gp"] = "git_push",
 				["gg"] = "git_commit_and_push",
-				["H"] = "prev_source",
         ["L"] = "next_source",
 				h = "parent_or_close",
 				l = "child_or_open",
