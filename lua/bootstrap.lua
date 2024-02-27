@@ -25,6 +25,9 @@ require("lazy").setup({
       "habamax",
     },
   },
+  ui = {
+    border = "single",
+  },
   checker = { enabled = true },
   performance = {
     rtp = {

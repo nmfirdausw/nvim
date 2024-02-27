@@ -27,6 +27,7 @@ return {
 				enable_character_fade = false,
 			},
 			indent = {
+				indent_size = 2,
 				padding = 0,
 			},
 			icon = {
