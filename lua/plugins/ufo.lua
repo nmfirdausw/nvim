@@ -30,7 +30,7 @@ return {
 		dependencies = {
 			{ 
 				"kevinhwang91/promise-async",
-				version = "1.0"
+				version = false,
 			},
 		},
 		event = "BufReadPost",
