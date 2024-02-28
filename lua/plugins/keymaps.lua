@@ -19,6 +19,7 @@ return {
       ["<leader>l"] = { name = " LSP", _ = "which_key_ignore" },
       ["<leader>x"] = { name = " Trouble", _ = "which_key_ignore" },
       ["<leader>t"] = { name = " Toggle", _ = "which_key_ignore" },
+      ["<leader>c"] = { name = " Change filetype", _ = "which_key_ignore" },
     })
     vim.api.nvim_set_hl(0, "WhichKeyFloat", { link = "NormalFloat" })
   end,

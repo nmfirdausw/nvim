@@ -19,17 +19,18 @@ vim.keymap.set("n", "<leader>tw", function()
     vim.opt.wrap = true
   end
 end, { desc = "Toggle wrap line" })
-vim.keymap.set("n", "<leader>tfp", function()
+
+vim.keymap.set("n", "<leader>cp", function()
   vim.bo.filetype = "php"
   vim.cmd('LspRestart')
 end, { desc = "Change filetype to php" })
 
-vim.keymap.set("n", "<leader>tfb", function()
+vim.keymap.set("n", "<leader>cb", function()
   vim.bo.filetype = "blade"
   vim.cmd('LspRestart')
 end, { desc = "Change filetype to blade" })
 
-vim.keymap.set("n", "<leader>tfh", function()
+vim.keymap.set("n", "<leader>ch", function()
   vim.bo.filetype = "html"
   vim.cmd('LspRestart')
 end, { desc = "Change filetype to html" })
