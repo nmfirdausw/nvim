@@ -128,7 +128,7 @@ return {
               on_attach = function(client, bufnr)
                 inlayhints.on_attach(client, bufnr)
               end,
-              filetypes = { "php" },
+              filetypes = { "php", "blade", "html" },
             })
           end,
           tailwindcss = function()
@@ -138,7 +138,7 @@ return {
           end,
           emmet_ls = function()
             lspconfig.emmet_ls.setup({
-              filetypes = { "html" },
+              filetypes = { "html", "blade" },
             })
           end,
           cssls = function()
