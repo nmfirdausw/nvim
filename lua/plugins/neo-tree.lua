@@ -10,7 +10,6 @@ return {
 		close_if_last_window = true,
 		enable_git_status = true,
 		enable_diagnostics = true,
-		enable_normal_mode_for_inputs = false,
 		sources = { "filesystem", "buffers", "git_status" },
 		source_selector = {
 			winbar = true,
