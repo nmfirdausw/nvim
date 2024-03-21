@@ -68,7 +68,7 @@ vim.opt.virtualedit = "block"
 vim.opt.whichwrap:append("<>[]hl")
 vim.opt.wildmode = "longest:full,full"
 vim.opt.winminwidth = 5
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.writebackup = false
 
 vim.opt.foldcolumn = "1"
