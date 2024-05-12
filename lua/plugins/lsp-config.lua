@@ -23,7 +23,7 @@ return {
         opts = {
           bind = true,
           handler_opts = {
-            border = "single",
+            border = { "", "", "", " ","", "", "", " ", },
           },
         },
         config = function(_, opts)
