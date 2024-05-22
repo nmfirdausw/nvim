@@ -1,12 +1,8 @@
 return {
   "numToStr/Comment.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
-  },
-  keys = {
-    { "gc", mode = { "n", "v" }, desc = "Comment toggle linewise" },
-    { "gb", mode = { "n", "v" }, desc = "Comment toggle blockwise" },
   },
   config = function ()
     local commentstring = require("ts_context_commentstring.integrations.comment_nvim")

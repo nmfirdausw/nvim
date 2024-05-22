@@ -1,6 +1,6 @@
 return {
   "folke/which-key.nvim",
-  event = "VeryLazy",
+  event = "UiEnter",
   config = function()
     require("which-key").setup({
       icons = {

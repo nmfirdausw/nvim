@@ -1,8 +1,7 @@
 require("options")
-require("keymaps")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -12,33 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  defaults = {
-    lazy = true,
-    version = false,
-  },
-  install = {
-    colorscheme = { "gruvbox", "habamax" },
-  },
-  ui = {
-    border = "single",
-    backdrop = 100,
-  },
-  checker = { enable = true },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
+	install = { colorscheme = { "default" } },
 })
+
+require("autocmds")

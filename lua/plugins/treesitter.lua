@@ -39,6 +39,7 @@ return {
           "vim",
           "vimdoc",
           "yaml",
+          "norg",
         },
         auto_install = true,
         highlight = { enable = true },
