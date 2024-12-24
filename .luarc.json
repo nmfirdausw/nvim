@@ -1,0 +1,19 @@
+{
+  "runtime.version": "LuaJIT",
+  "runtime.path": [
+    "lua/?.lua",
+    "lua/?/init.lua"
+  ],
+  "diagnostics.globals": ["vim"],
+  "workspace.checkThirdParty": false,
+  "workspace.library": ["$VIMRUNTIME"],
+  "codeLens.enable": true,
+  "completion.callSnippet": "Replace",
+  "doc.privateName": ["^_"],
+  "hint.enable": true,
+  "hint.setType": true,
+  "hint.paramType": true,
+  "hint.paramName": "Enable",
+  "hint.semicolon": "Enable",
+  "hint.arrayIndex": "Disable"
+}
