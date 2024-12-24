@@ -1,6 +1,13 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+if vim.g.neovide then
+  vim.o.guifont = "VictorMono Nerd Font Propo:h15"
+  vim.g.neovide_cursor_antialiasing = false
+  vim.g.neovide_refresh_rate = 60
+  vim.g.neovide_show_border = true
+end
+
 local git_dir = vim.fn.finddir(".git", vim.fn.getcwd() .. ";")
 vim.g.gitdir = git_dir ~= ""
 

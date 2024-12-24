@@ -24,6 +24,13 @@ return {
 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = colors.success, bg = "none" })
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = colors.success, bg = "none", italic = true })
+    vim.api.nvim_set_hl(0, "@keyword.return", { fg = colors.color400, bg = "none", italic = true })
+    vim.api.nvim_set_hl(0, "@keyword.function", { fg = colors.color400, bg = "none", italic = true })
+    vim.api.nvim_set_hl(0, "Structure", { fg = colors.color400, bg = "none" })
+    vim.api.nvim_set_hl(0, "StorageClass", { fg = colors.primary, bg = "none" })
+    vim.api.nvim_set_hl(0, "phpRegion", { fg = colors.primary, bg = "none" })
+    vim.api.nvim_set_hl(0, "Type", { fg = colors.color400, bg = "none", italic = true })
     vim.api.nvim_set_hl(0, "GitSignsChange", { fg = colors.warning, bg = "none" })
     vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = colors.error, bg = "none" })
     vim.api.nvim_set_hl(0, "IblIndent", { fg = colors.color700, bg = "none" })
