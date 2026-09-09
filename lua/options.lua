@@ -4,3 +4,6 @@ vim.opt.clipboard:append("unnamedplus")
 -- Disable swapfile and backup file creation
 vim.opt.swapfile = false
 vim.opt.backup = false
+
+-- Enable persistent undo history
+vim.opt.undofile = true
