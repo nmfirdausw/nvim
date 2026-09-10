@@ -1,4 +1,4 @@
--- Install fyler.nvim, a file explorer plugin
+-- Install fyler.nvim, a file manager plugin
 vim.pack.add({
   "https://github.com/FylerOrg/fyler.nvim"
 }, { confirm = false })
