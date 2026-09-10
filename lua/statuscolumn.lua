@@ -33,7 +33,7 @@ local function get_sign(buf, lnum)
   return best
 end
 
--- Sign cell: the sign's text if the line has one, otherwise a separator bar
+-- Sign cell: sign text if any, else a fold marker, else a separator bar
 function _G.SignColumn()
   if vim.v.virtnum ~= 0 then
     return "│"
@@ -43,6 +43,12 @@ function _G.SignColumn()
   if sign then
     local hl = sign.sign_hl_group or "SignColumn"
     return "%#" .. hl .. "#" .. vim.trim(sign.sign_text) .. "%*"
+  end
+  if vim.fn.foldclosed(lnum) == lnum then
+    return "+"
+  end
+  if vim.fn.foldlevel(lnum) > vim.fn.foldlevel(lnum - 1) then
+    return "-"
   end
   return "│"
 end
