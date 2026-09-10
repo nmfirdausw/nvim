@@ -6,3 +6,9 @@ vim.diagnostic.config({
   virtual_text = { current_line = true },
   float = { border = "none" },
 })
+
+-- Show the diagnostic in a float and hiding virtual text
+vim.keymap.set("n", "<leader>dk", function()
+  vim.diagnostic.config({ virtual_text = false })
+  vim.diagnostic.open_float()
+end, { desc = "Open diagnostic float" })
