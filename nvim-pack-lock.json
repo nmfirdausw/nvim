@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "fyler.nvim": {
+      "rev": "81066aa5d1fabdd6c71f57f1af57f2a1a6f91166",
+      "src": "https://github.com/FylerOrg/fyler.nvim"
+    }
+  }
+}
