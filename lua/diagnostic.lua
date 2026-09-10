@@ -21,6 +21,16 @@ vim.api.nvim_create_autocmd("CursorMoved", {
   end,
 })
 
+-- Toggle diagnostic on and off
+vim.keymap.set("n", "<leader>td", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostic" })
+
+-- Toggle diagnostic on and off
+vim.keymap.set("n", "<leader>dd", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostic" })
+
 -- Show diagnostic float, hiding virtual text
 vim.keymap.set("n", "<leader>dk", function()
   vim.diagnostic.config({ virtual_text = false })
