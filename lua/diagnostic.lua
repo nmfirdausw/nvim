@@ -36,3 +36,13 @@ vim.keymap.set("n", "<leader>dk", function()
   vim.diagnostic.config({ virtual_text = false })
   vim.diagnostic.open_float()
 end, { desc = "Open diagnostic float" })
+
+-- Send buffer's diagnostics to the location list and open
+vim.keymap.set("n", "<leader>dl", function()
+  vim.diagnostic.setloclist({ open = true })
+end, { desc = "Open bufer's diagostic location list" })
+
+-- Send workspace's diagnostics to the quickfix list and open
+vim.keymap.set("n", "<leader>dc", function()
+  vim.diagnostic.setqflist({ open = true })
+end, { desc = "Open workspace's diagostic quickfix list" })
