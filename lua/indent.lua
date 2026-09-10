@@ -23,3 +23,7 @@ for ft, opts in pairs(indent_overrides) do
     end,
   })
 end
+
+-- Keep selection during indent and unindent
+vim.keymap.set("v", "<", "<gv", { desc = "Unindent" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
