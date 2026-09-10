@@ -7,7 +7,21 @@ vim.diagnostic.config({
   float = { border = "none" },
 })
 
--- Show the diagnostic in a float and hiding virtual text
+-- Restore virtual text on cursor move, but not inside the float
+vim.api.nvim_create_autocmd("CursorMoved", {
+  group = vim.api.nvim_create_augroup("diagnostic_virtual_text", { clear = true }),
+  callback = function()
+    if vim.fn.mode() ~= "n" then
+      return
+    end
+    if vim.bo.buftype == "nofile" then
+      return
+    end
+    vim.diagnostic.config({ virtual_text = { current_line = true } })
+  end,
+})
+
+-- Show diagnostic float, hiding virtual text
 vim.keymap.set("n", "<leader>dk", function()
   vim.diagnostic.config({ virtual_text = false })
   vim.diagnostic.open_float()
