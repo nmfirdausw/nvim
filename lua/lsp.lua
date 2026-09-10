@@ -3,7 +3,6 @@ vim.lsp.enable({
   "lua_ls",
 })
 
-
 -- Toggle inlay hints
 vim.keymap.set("n", "<leader>th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

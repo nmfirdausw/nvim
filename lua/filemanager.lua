@@ -1,6 +1,6 @@
 -- Install fyler.nvim, a file manager plugin
 vim.pack.add({
-  "https://github.com/FylerOrg/fyler.nvim"
+  "https://github.com/FylerOrg/fyler.nvim",
 }, { confirm = false })
 
 local fyler = require("fyler")
